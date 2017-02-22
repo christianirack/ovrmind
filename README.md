@@ -5,7 +5,7 @@
 Home: Slider programado de cero, en móvil muestra un gráficos más optimizados que en escritorio.
 Hay una cookie que se alimenta de la IP del usuario y se mantiene en memoria.
 
-Servicios: Estos datos se obtienen desde mi base mysql, pueden acceder remotamente, en src/info-mysql.txt estan las claves.
+Servicios: Estos datos se obtienen desde mi base mysql, pueden acceder remotamente, en src/info-mysql.txt están las claves.
 
 Contacto: Se validan estos campos y se inyectan a MySQL.
 
