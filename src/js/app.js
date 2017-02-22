@@ -49,6 +49,20 @@ function servicios(){
   		
 	});
 }
+
+function contacto(){
+	$('#form-button').on('touch click',function(){
+		if($('input[name="name"]').val()!='' &&  ($('input[name="email"]').val().indexOf("@") != -1) &&  $('input[name="tel"]').val()!=''){
+			$('.form-element').hide();
+			$('#form-button').off('touch click');
+			$.post( "php/api-guardar.php", {name:$('input[name="name"]').val(),email:$('input[name="email"]').val(),tel:$('input[name="tel"]').val()},  function(  ) {
+				$('#form-button').html('Gracias, tu mensaje ha sido enviado!');
+			});
+		}else{
+			$('.form-alert').show();
+		}
+	});
+}
 /*----------  Generar slider  ----------*/
 function ciSlider(){
 	/*----------  Obtener la medida del dispositivo y mostrar la resolución más adecuada  ----------*/
@@ -123,9 +137,11 @@ function events(){
 		$('[id-sec]').removeClass('active-link');
 		$(this).addClass('active-link');
 		if(attr==0){
-			open(sections[0],'home()');
+			open(sections[attr],'home()');
 		}else if(attr==1){
-			open(sections[1],'servicios()');
+			open(sections[attr],'servicios()');
+		}else if(attr==2){
+			open(sections[attr],'contacto()');
 		}
 	})
 }

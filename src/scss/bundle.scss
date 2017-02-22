@@ -3,15 +3,20 @@
 	padding: 0px;
 	border:0px;
 	font-family: 'Heebo', sans-serif;
+	outline:none;
 }
 html,body{
 	width:100%;
 	font-size:12px;
 }
+#content{
+	text-align: center;
+}
 
 @import "menu";
-@import "services";
 @import "slider";
+@import "services";
+@import "contact";
 @import "media-queries";
 
 

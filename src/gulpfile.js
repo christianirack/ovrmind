@@ -41,7 +41,7 @@ gulp.task('js', ()=>{
 
 /*----------  Vigilar JS, CSS Y SASS  ----------*/
 gulp.task('watch', () => {
-  gulp.watch(pathScss+'**/*.scss',['sass']);
+  gulp.watch(pathScss+'*.scss',['sass']);
   gulp.watch(pathJss+'**/*.js',['js']);
 });
 gulp.task('default', ['sass','js','watch']);
