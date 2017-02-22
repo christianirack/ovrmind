@@ -1,0 +1,17 @@
+.ci-services{
+	width:100%;
+	text-align: center;
+	margin-top:60px !important;
+	li{
+		display:block;
+		font-size:2em;
+		margin:20px;
+		color: rgba(0,0,0,.2);
+		cursor: pointer;
+		transition: all .5s;
+		&:hover{
+			color: rgba(0,0,0,1);
+		}
+	}
+
+}

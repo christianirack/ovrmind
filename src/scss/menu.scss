@@ -1,0 +1,17 @@
+.menu{
+	width:100%;
+	margin-top: 20px;
+	padding-bottom: 20px;
+	text-align: center;
+	border-bottom: 1px solid rgba(0,0,0,.2);
+	li{
+		display: inline-block;
+		font-size: 2em;
+		margin-right: 20px;
+		cursor: pointer;
+	}
+
+}
+.active-link{
+	text-decoration: underline !important;
+}

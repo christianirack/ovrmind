@@ -12,13 +12,32 @@ html, body {
 .menu {
   width: 100%;
   margin-top: 20px;
-  margin-bottom: 20px;
-  text-align: center; }
+  padding-bottom: 20px;
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2); }
   .menu li {
     display: inline-block;
     font-size: 2em;
     margin-right: 20px;
     cursor: pointer; }
+
+.active-link {
+  text-decoration: underline !important; }
+
+.ci-services {
+  width: 100%;
+  text-align: center;
+  margin-top: 60px !important; }
+  .ci-services li {
+    display: block;
+    font-size: 2em;
+    margin: 20px;
+    color: rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    -webkit-transition: all .5s;
+    transition: all .5s; }
+    .ci-services li:hover {
+      color: black; }
 
 .ci-slider {
   /*----------  CI Slider propiedades del contenedor ----------*/
@@ -63,4 +82,8 @@ html, body {
   .menu li {
     display: block !important;
     font-size: 2.5em !important;
-    margin: 20px !important; } }
+    margin: 20px !important; }
+  .ci-slider {
+    /*----------  CI Slider propiedades del contenedor ----------*/
+    height: 300px !important;
+    min-height: 300px !important; } }

@@ -16,15 +16,21 @@ var size;
 var sections = ['sections/home.html','sections/services.html','sections/contact.html'];
 /*----------  Iniciar sección  ----------*/
 $(function(){
-	$('#content').load(sections[0], function(response, status, xhr){
-		home();
-	})
+	open(sections[0],'home()');
+	events();
 })
+
+function open(file,functionEval){
+	$('#content').load(file, function(response, status, xhr){
+		eval(functionEval);
+	})
+
+}
 /*----------  Cargar home  ----------*/
 function home(){
 	window_em = 1/16 * $(window).width();
    jsResponsive();
-	$.post( "ip.php", function( getIp ) {
+	$.post( "php/api-ip.php", function( getIp ) {
 		/*----------  Obtener fecha  ----------*/
 			var getDateObj = new Date();
 			var date = getDateObj.getDate()+'/'+getDateObj.getMonth()+'/'+getDateObj.getFullYear();
@@ -35,6 +41,17 @@ function home(){
   			console.log(JSON.stringify(infoUsuario));
   		/*----------  Generar slider  ----------*/
   		ciSlider();
+	});
+}
+
+function servicios(){
+	$.post( "php/api-servicios.php", function( getServices ) {
+		getServices = JSON.parse(getServices);
+  			for(var x in getServices){
+  				$(".ci-services").append('<li>'+getServices[x]+'</li>')
+  				console.log(getServices[x]);
+  			}
+  		
 	});
 }
 /*----------  Generar slider  ----------*/
@@ -103,4 +120,17 @@ function jsResponsive(){
 		size='l';
 	}
 	return size;
+}
+/*----------  Eventos al menú  ----------*/
+function events(){
+	$('[id-sec]').on('touch click',function(e){
+		var attr = $(this).attr('id-sec');
+		$('[id-sec]').removeClass('active-link');
+		$(this).addClass('active-link');
+		if(attr==0){
+			open(sections[0],'home()');
+		}else if(attr==1){
+			open(sections[1],'servicios()');
+		}
+	})
 }
