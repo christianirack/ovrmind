@@ -1,0 +1,9 @@
+#!/bin/sh
+sudo npm install npm@latest -g
+npm rb
+open -a "Google Chrome" http://localhost/OVRMIND/
+figlet RUN
+SCRIPTPATH=$(dirname "$0")
+echo "gulper default: $SCRIPTPATH"
+cd $SCRIPTPATH
+gulper default

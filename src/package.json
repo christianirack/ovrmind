@@ -1,0 +1,23 @@
+{
+  "name": "ovrmind",
+  "version": "1.0.0",
+  "description": "Testing",
+  "main": "_gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Christian Irack",
+  "license": "ISC",
+   "devDependencies": {
+    "child-process": "^1.0.2",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssmin": "^0.1.7",
+    "gulp-minify": "0.0.14",
+    "gulp-run": "^1.7.1",
+    "gulp-sass": "^3.0.0",
+    "gulp-shell": "^0.5.2",
+    "gulp-uglify": "^2.0.0"
+  }
+}
