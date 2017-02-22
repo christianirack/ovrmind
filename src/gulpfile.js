@@ -22,7 +22,7 @@ for(var i in jsFiles){
 }
 
 /*----------  Compilar SASS  ----------*/
-gulp.task('sass', ['copy'], ()=>
+gulp.task('sass', ()=>
 	gulp.src(pathScss+'bundle.scss').on('error', handleError)
 	.pipe(sass({ outputStyle:'expended'})).on('error', handleError)
 	.pipe(autoprefixer({versions:['last 5 browsers']})).on('error', handleError)
@@ -30,7 +30,7 @@ gulp.task('sass', ['copy'], ()=>
     
 );
 /*----------  Concatenar JS  ----------*/
-gulp.task('js', ['copy'], ()=>{
+gulp.task('js', ()=>{
     gulp.src(js)
     .pipe(concat('bundle.js')).on('error', handleError)
     .pipe(gulp.dest(public+'js/'))
@@ -38,18 +38,13 @@ gulp.task('js', ['copy'], ()=>{
 });
 
 /*----------  Copiar archivos de public  ----------*/
-gulp.task('copy', function() {
-   gulp.src('./public/**/*')
-   .pipe(gulp.dest(public));
-});
 
 /*----------  Vigilar JS, CSS Y SASS  ----------*/
 gulp.task('watch', () => {
   gulp.watch(pathScss+'**/*.scss',['sass']);
   gulp.watch(pathJss+'**/*.js',['js']);
-  gulp.watch(pathPublic+'**/*.*',['copy']);
 });
-gulp.task('default', ['sass','copy','js','watch']);
+gulp.task('default', ['sass','js','watch']);
 
 /*----------  Errores al compilar  ----------*/
 function handleError(err){
