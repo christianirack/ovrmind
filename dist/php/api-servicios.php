@@ -6,7 +6,7 @@ if($conexion->connect_error){
 }else{
 	$r = $conexion->query("SELECT servicio FROM servicios ORDER BY servicio asc");
 	while ($fila = $r->fetch_assoc()){
-		array_push($objeto, $fila['servicio']);
+		array_push($objeto, utf8_encode($fila['servicio']));
 	}
 	echo json_encode($objeto,JSON_FORCE_OBJECT );
 };

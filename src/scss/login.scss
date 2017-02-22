@@ -1,0 +1,37 @@
+.form-element-pass{
+	text-align: center;
+	font-size:8em;
+	border-bottom: 1px solid rgba(0,0,0,.3) !important;
+	display: block;
+	width:100%;
+	margin-bottom: 20px !important;
+}
+#form-button-login{
+	font-size:2em;
+	border: 1px solid rgba(0,0,0,.3) !important;
+	padding:15px;
+	background-color: rgba(255,255,255,1);
+	margin-top:20px;
+	cursor: pointer;
+}
+.ci-contactos{
+	padding-top: 60px;
+}
+.ci-contactos li{
+	font-size:2em;
+	margin-bottom:10px;
+}
+.ci-session{
+	color:#ff8000;
+	font-size:1.5em;
+	text-decoration: underline;
+	margin-top:20px;
+	cursor:pointer;
+	display:none;
+}
+.form-alert{
+	display:none;
+}
+.ci-pass{
+	font-size:1.5em;
+}

@@ -13,7 +13,7 @@ var mediaJsQuery={
 	's':40
 }
 var size;
-var sections = ['sections/home.html','sections/services.html','sections/contact.html'];
+var sections = ['sections/home.html','sections/services.html','sections/contact.html','sections/login.html'];
 /*----------  Iniciar sección  ----------*/
 $(function(){
 	open(sections[0],'home()');
@@ -43,7 +43,7 @@ function home(){
   		ciSlider();
 	});
 }
-
+/*----------  Cargar el api de servicios, leer Mysql  ----------*/
 function servicios(){
 	$.post( "php/api-servicios.php", function( getServices ) {
 		getServices = JSON.parse(getServices);
@@ -54,7 +54,7 @@ function servicios(){
   		
 	});
 }
-
+/*----------  Cargar el api de contacto, dónde se van a guardar los datos  ----------*/
 function contacto(){
 	$('#form-button').on('touch click',function(){
 		if($('input[name="name"]').val()!='' &&  ($('input[name="email"]').val().indexOf("@") != -1) &&  $('input[name="tel"]').val()!=''){
@@ -67,6 +67,45 @@ function contacto(){
 			$('.form-alert').show();
 		}
 	});
+}
+/*----------  Cargar el api de login para obtener datos  ----------*/
+function login(){
+	showSession('init');
+	$('#form-button-login').on('touch click',function(){
+		showSession('normal');
+	});
+	$(".ci-session").on('touch click',function(){
+		$.post( "php/api-login.php", {close: true},function( data ) {
+ 			$(".forma").show();
+ 			$(".ci-contactos").html('');
+		});
+	});
+}
+/*----------  Al entrar a la sección de login hacer el autologin  ----------*/
+function showSession(typeRequest){
+	$(".ci-contactos").html('');
+	var sendData;
+	if(typeRequest=='normal'){
+		sendData = {'pass':$('input[type="password"]').val()};
+	}else{
+		sendData = '';
+	}
+		$.post( "php/api-login.php", sendData, function( data ) {
+			if(data!=null && data!='null'){
+				data = JSON.parse(data);
+				console.log(data);
+	  			for(var x in data){
+	  				$(".ci-contactos").append('<li>'+data[x].name+' / '+data[x].tel+' / '+data[x].email+'</li>');
+	  			}
+	  			$(".forma").hide();
+	  			$(".ci-session").show();
+  			}else{
+  				if(typeRequest=='normal'){
+					$(".form-alert").show();
+				}
+  			}	
+  			
+		});
 }
 /*----------  Generar slider  ----------*/
 function ciSlider(){
@@ -147,6 +186,8 @@ function events(){
 			open(sections[attr],'servicios()');
 		}else if(attr==2){
 			open(sections[attr],'contacto()');
+		}else if(attr==3){
+			open(sections[attr],'login()');
 		}
 	})
 }
