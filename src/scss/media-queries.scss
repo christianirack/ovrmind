@@ -1,0 +1,21 @@
+//////////////////Pequeño
+@media only screen and (max-width: 40em) {
+	.menu li{
+		display: block !important;
+		font-size: 2.5em !important;
+		margin: 20px !important;
+	}
+	.ci-slider{
+	/*----------  CI Slider propiedades del contenedor ----------*/
+		height: 300px !important;
+		min-height: 300px !important;
+	}
+ } 
+///////////////////Mediano
+@media only screen and (min-width: 40.063em) and (max-width: 64em) {
+
+} 
+/////////////////////Grande
+@media only screen and (min-width: 64.063em) {
+
+ } 

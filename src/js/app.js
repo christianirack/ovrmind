@@ -1,14 +1,23 @@
+/*----------  Inicializar variables del entorno y configuración del slider  ----------*/
 var infoUsuario;
 var window_em;
+var zIndex=999;
 var mediaJsQuery={
 	'l':64.063,
 	'm':40.063,
 	's':40
 }
 var size;
-/*----------  Iniciar app  ----------*/
+var sections = ['sections/home.html','sections/services.html','sections/contact.html'];
+/*----------  Iniciar sección  ----------*/
 $(function(){
-   window_em = 1/16 * $(window).width();
+	$('#content').load(sections[0], function(response, status, xhr){
+		home();
+	})
+})
+/*----------  Cargar home  ----------*/
+function home(){
+	window_em = 1/16 * $(window).width();
    jsResponsive();
 	$.post( "ip.php", function( getIp ) {
 		/*----------  Obtener fecha  ----------*/
@@ -22,7 +31,7 @@ $(function(){
   		/*----------  Generar slider  ----------*/
   		ciSlider();
 	});
-})
+}
 /*----------  Generar slider  ----------*/
 function ciSlider(){
 	/*----------  Obtener la medida del dispositivo y mostrar la resolución más adecuada  ----------*/
@@ -43,12 +52,26 @@ function ciRender(){
 
 function ciNav(){
 	var i = 0;
+	/*----------  Leer # de elementos del slider  ----------*/
 	$('.ci-slider li').each(function(){
 		$(this).attr('ci-id',i);
+		$(this).css({'top':-100});
 		$('.ci-slider-nav').append('<div id-slider="'+i+'" />');
-		i++;	
+		i++;
 	})
+	/*----------  Asignar eventos con algunos efectos de movimiento (css3) ----------*/
+	$('[id-slider]').on('click touch', function(){
+		var idObj = $(this).attr('id-slider');
+		$('[ci-id]').css({'top':-100,'opacity':0});
+		$('[ci-id="'+idObj+'"]').css({ 'zIndex':zIndex, 'top':0,'opacity':1});
+		$('[id-slider]').removeClass('active');
+		$('[id-slider="'+idObj+'"]').addClass('active');
+		zIndex++;
+	});
+	/*---------- Mostrar el primero  ----------*/
 	$('[id-slider="0"]').addClass('active');
+	$('[ci-id="0"]').css({'top':0, 'zIndex':zIndex});
+
 
 }
 $(window).resize(function(){
@@ -63,7 +86,7 @@ function renderImagesMediaQueries(type){
 
 	})
 }
-/*----------  Detectar tamaño del dispositivo  ----------*/
+/*----------  Detectar tamaño del dispositivo en em  ----------*/
 function jsResponsive(){
 	window_em = 1/16 * $(window).width();
 	if(window_em<=mediaJsQuery.s){
